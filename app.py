@@ -59,11 +59,18 @@ def batsmen():
 def bowlers():
     try:
         db = get_db()
+        # Fetch data
         players = db.execute("SELECT * FROM bowlers ORDER BY wickets DESC").fetchall()
+        
+        # This print will show up in your Render Logs so you can see the column names
+        if players:
+            print(f"DEBUG: Bowler columns are: {players[0].keys()}")
+            
         return render_template("bowlers.html", players=players)
     except Exception as e:
-        print(f"Error fetching bowlers: {e}")
-        return render_template("bowlers.html", players=[])
+        # This prevents the 500 error and tells you the mistake in the Render Logs
+        print(f"CRITICAL ERROR in Bowlers route: {e}")
+        return "Error loading bowlers. Check if the Excel file was uploaded correctly.", 500
 
 # --- ADMIN ROUTES ---
 
