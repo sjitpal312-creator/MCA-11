@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Bowling Statistics</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Mat</th>
+                <th>Inn</th>
+                <th>Wkts</th>
+                <th>Econ</th>
+                <th>Best</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in players %}
+            <tr>
+                <td>**{{ p.name }}**</td>
+                <td>{{ p.matches }}</td>
+                <td>{{ p.innings }}</td>
+                <td>{{ p.wickets }}</td>
+                <td>{{ p.economy }}</td>
+                <td>{{ p.best_figures }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
