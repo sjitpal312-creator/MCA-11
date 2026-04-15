@@ -46,31 +46,17 @@ def get_db():
 
 @app.route("/batsmen")
 def batsmen():
-    try:
-        db = get_db()
-        players = db.execute("SELECT * FROM batsmen ORDER BY runs DESC").fetchall()
-        return render_template("batsmen.html", players=players)
-    except Exception as e:
-        # If the table doesn't exist yet, show an empty list instead of crashing
-        print(f"Error fetching batsmen: {e}")
-        return render_template("batsmen.html", players=[])
+    db = get_db()
+    # Ordering by runs puts the best batsmen at the top
+    players = db.execute("SELECT * FROM batsmen ORDER BY runs DESC").fetchall()
+    return render_template("batsmen.html", players=players)
 
 @app.route("/bowlers")
 def bowlers():
-    try:
-        db = get_db()
-        # Fetch data
-        players = db.execute("SELECT * FROM bowlers ORDER BY wickets DESC").fetchall()
-        
-        # This print will show up in your Render Logs so you can see the column names
-        if players:
-            print(f"DEBUG: Bowler columns are: {players[0].keys()}")
-            
-        return render_template("bowlers.html", players=players)
-    except Exception as e:
-        # This prevents the 500 error and tells you the mistake in the Render Logs
-        print(f"CRITICAL ERROR in Bowlers route: {e}")
-        return "Error loading bowlers. Check if the Excel file was uploaded correctly.", 500
+    db = get_db()
+    # Ordering by wickets puts the best bowlers at the top
+    players = db.execute("SELECT * FROM bowlers ORDER BY wickets DESC").fetchall()
+    return render_template("bowlers.html", players=players)
 
 # --- ADMIN ROUTES ---
 
