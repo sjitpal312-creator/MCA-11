@@ -1,33 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Batsmen Stats</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <nav><a href="/">Home</a></nav>
-    <div class="container">
-        <h1>Batting Leaderboard</h1>
-        <table>
+<div class="container">
+    <h2>Batting Statistics</h2>
+    <table>
+        <thead>
             <tr>
-                <th>Name</th>
-                <th>Matches</th>
+                <th>Player</th>
+                <th>Mat</th>
+                <th>Inn</th>
                 <th>Runs</th>
                 <th>Avg</th>
-                <th>SR</th>
+                <th>S/R</th>
                 <th>HS</th>
             </tr>
+        </thead>
+        <tbody>
             {% for p in players %}
             <tr>
-                <td>{{ p.name }}</td>
+                <td>**{{ p.name }}**</td>
                 <td>{{ p.matches }}</td>
+                <td>{{ p.innings }}</td>
                 <td>{{ p.runs }}</td>
-                <td>{{ p.average }}</td>
+                <td>{{ p.avg }}</td>
                 <td>{{ p.strike_rate }}</td>
                 <td>{{ p.high_score }}</td>
             </tr>
             {% endfor %}
-        </table>
-    </div>
-</body>
-</html>
+        </tbody>
+    </table>
+</div>
