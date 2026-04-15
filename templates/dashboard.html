@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCA 11 - Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <nav>
-        <a href="/">View Site</a>
+        <a href="/">View Website</a>
         <a href="/logout">Logout</a>
     </nav>
+
     <div class="container">
-        <h1>Admin Dashboard</h1>
-        
+        <h1>Admin Control Panel</h1>
+
         <div class="update-box">
-            <h3>Post News Update</h3>
+            <h3>Post Match Update</h3>
             <form action="/post_update" method="POST">
-                <textarea name="update_text" placeholder="Write match update here..." required></textarea>
-                <button type="submit" class="btn">Post Update</button>
+                <textarea name="update_text" rows="4" placeholder="Enter the latest match result or news..." required></textarea>
+                <br>
+                <button type="submit" class="btn">Publish News</button>
             </form>
         </div>
 
+        <hr>
+
         <div class="update-box">
-            <h3>Upload Stats (Excel)</h3>
+            <h3>Upload Player Statistics</h3>
+            <p><small>Note: Uploading will replace existing table data.</small></p>
+            
             <form action="/update_stats" method="POST" enctype="multipart/form-data">
-                <select name="table_type" class="btn" style="background: white; color: black; border: 1px solid #ccc;">
-                    <option value="batsmen">Batsmen Table</option>
-                    <option value="bowlers">Bowlers Table</option>
+                <label for="table_type">Select Category:</label>
+                <select name="table_type" id="table_type" class="btn" style="background: white; color: black; border: 1px solid #ccc; display: block; margin-bottom: 10px;">
+                    <option value="batsmen">Batsmen (Runs/Avg/SR)</option>
+                    <option value="bowlers">Bowlers (Wickets/Econ/Best)</option>
                 </select>
-                <input type="file" name="file" accept=".xlsx, .xls" required>
-                <button type="submit" class="btn">Upload & Replace Data</button>
+
+                <label for="file">Excel File (.xlsx):</label>
+                <input type="file" name="file" id="file" accept=".xlsx, .xls" required>
+                
+                <br><br>
+                <button type="submit" class="btn">Update Leaderboard</button>
             </form>
         </div>
     </div>
