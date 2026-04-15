@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCA 11 - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/batsmen">Batsmen Stats</a>
+        <a href="/bowlers">Bowler Stats</a>
+        <a href="/admin">Admin</a>
+    </nav>
+    <div class="container">
+        <h1>MCA 11 Sainthia</h1>
+        <div class="update-box">
+            <h3>Latest Update:</h3>
+            <p>{{ latest_update }}</p>
+        </div>
+        <h2>Team Overview</h2>
+        <p>Welcome to the official portal of Morning Cricket Association 11. Here you can track player performances and match updates.</p>
+    </div>
+
+    <div style="display: flex; gap: 20px; justify-content: center; margin-top: 50px;">
+        <a href="/batsmen" class="btn" style="padding: 40px; width: 150px; text-align: center;">🏏 VIEW BATSMEN</a>
+        <a href="/bowlers" class="btn" style="padding: 40px; width: 150px; text-align: center;">🎯 VIEW BOWLERS</a>
+    </div>
+    
+</body>
+</html>
