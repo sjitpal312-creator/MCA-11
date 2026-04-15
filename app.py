@@ -44,23 +44,26 @@ def get_db():
 
 # --- USER ROUTES ---
 
-@app.route("/")
-def home():
-    db = get_db()
-    update = db.execute("SELECT content FROM updates ORDER BY id DESC LIMIT 1").fetchone()
-    return render_template("index.html", latest_update=update['content'] if update else "Welcome to MCA 11!")
-
 @app.route("/batsmen")
 def batsmen():
-    db = get_db()
-    players = db.execute("SELECT * FROM batsmen ORDER BY runs DESC").fetchall()
-    return render_template("batsmen.html", players=players)
+    try:
+        db = get_db()
+        players = db.execute("SELECT * FROM batsmen ORDER BY runs DESC").fetchall()
+        return render_template("batsmen.html", players=players)
+    except Exception as e:
+        # If the table doesn't exist yet, show an empty list instead of crashing
+        print(f"Error fetching batsmen: {e}")
+        return render_template("batsmen.html", players=[])
 
 @app.route("/bowlers")
 def bowlers():
-    db = get_db()
-    players = db.execute("SELECT * FROM bowlers ORDER BY wickets DESC").fetchall()
-    return render_template("bowlers.html", players=players)
+    try:
+        db = get_db()
+        players = db.execute("SELECT * FROM bowlers ORDER BY wickets DESC").fetchall()
+        return render_template("bowlers.html", players=players)
+    except Exception as e:
+        print(f"Error fetching bowlers: {e}")
+        return render_template("bowlers.html", players=[])
 
 # --- ADMIN ROUTES ---
 
