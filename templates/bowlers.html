@@ -1,20 +1,30 @@
-<div class="container">
-    <h2>Bowling Statistics</h2>
-    <table>
-        <thead>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bowler Stats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/batsmen">Batsmen Stats</a>
+        <a href="/bowlers">Bowler Stats</a>
+        <a href="/admin">Admin</a>
+    </nav>
+    <div class="container">
+        <h1>Bowling Leaderboard</h1>
+        <table>
             <tr>
-                <th>Player</th>
-                <th>Mat</th>
-                <th>Inn</th>
-                <th>Wkts</th>
-                <th>Econ</th>
+                <th>Name</th>
+                <th>Matches</th>
+                <th>Innings</th>
+                <th>Wickets</th>
+                <th>Economy</th>
                 <th>Best</th>
             </tr>
-        </thead>
-        <tbody>
             {% for p in players %}
             <tr>
-                <td>**{{ p.name }}**</td>
+                <td>{{ p.name }}</td>
                 <td>{{ p.matches }}</td>
                 <td>{{ p.innings }}</td>
                 <td>{{ p.wickets }}</td>
@@ -22,6 +32,7 @@
                 <td>{{ p.best_figures }}</td>
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
-</div>
+        </table>
+    </div>
+</body>
+</html>
